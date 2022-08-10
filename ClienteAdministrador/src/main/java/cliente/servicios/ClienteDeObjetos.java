@@ -3,7 +3,6 @@ package cliente.servicios;
 import cliente.controladores.AdminitradorCallbackImpl;
 import interfaces.ControladorGestionAdministradoresInt;
 import java.rmi.RemoteException;
-import utilidades.UtilidadesConsola;
 import utilidades.UtilidadesRegistroC;
 
 /**
@@ -16,13 +15,9 @@ public class ClienteDeObjetos {
 
     public static void main(String[] args) throws RemoteException {
 
-        int numPuertoRMIRegistry = 0;
-        String direccionIpRMIRegistry = "";
-
-        System.out.println("Cual es el la dirección ip donde se encuentra  el rmiregistry ");
-        direccionIpRMIRegistry = UtilidadesConsola.leerCadena();
-        System.out.println("Cual es el número de puerto por el cual escucha el rmiregistry ");
-        numPuertoRMIRegistry = UtilidadesConsola.leerEntero();
+        int numPuertoRMIRegistry = 2021;
+        String direccionIpRMIRegistry = "localhost";
+        System.out.println("Cliente Administrador conectado en " + direccionIpRMIRegistry + " con puerto " + numPuertoRMIRegistry);
 
         objRemoto = (ControladorGestionAdministradoresInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry,
                 numPuertoRMIRegistry, "objServicioGestionAdministradores");

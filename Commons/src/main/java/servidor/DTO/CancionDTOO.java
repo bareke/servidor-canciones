@@ -2,8 +2,12 @@ package servidor.DTO;
 
 import java.io.Serializable;
 
-public class CancionDTOO implements Serializable
-{	
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
+public class CancionDTOO implements Serializable {
+
     private int id;
     private String tipo;
     private String artista;
@@ -14,7 +18,7 @@ public class CancionDTOO implements Serializable
     public CancionDTOO(String tipo, String artista, String titulo, int tamKB) {
         this.artista = artista;
         this.titulo = titulo;
-        this.tamKB = tamKB;       
+        this.tamKB = tamKB;
         this.tipo = tipo;
     }
 
@@ -34,8 +38,6 @@ public class CancionDTOO implements Serializable
         this.tipo = tipo;
     }
 
-    
-    
     public String getArtista() {
         return artista;
     }
@@ -66,5 +68,5 @@ public class CancionDTOO implements Serializable
 
     public void setArrayBytes(byte[] arrayBytes) {
         this.arrayBytes = arrayBytes;
-    }   
+    }
 }

@@ -31,7 +31,7 @@ public class CancionRepository implements CancionRepositoryInt {
         int varIncremento = listaCanciones.size() + 1;
         boolean bandera = true;
         try {
-            File objFile = new File("misCanciones/copia" + nombreCancion + "_" + varIncremento + ".mp3");// archivo donde se almacenara la canción
+            File objFile = new File("misCanciones/copia_Cancion" + varIncremento + ".mp3");// archivo donde se almacenara la canción
             OutputStream output = new FileOutputStream(objFile);
             output.write(array);// escribiendo la canción en el archivo
         } catch (FileNotFoundException ex) {

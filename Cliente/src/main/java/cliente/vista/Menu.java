@@ -28,8 +28,9 @@ public class Menu {
     public void ejecutarMenuPrincipal() {
         int opcion = 0;
         do {
+            System.out.println();
             System.out.println("\t===Menu===");
-            System.out.println("1. Registrase en el servidor de usuarios");
+            System.out.println("1. Registrarse en el servidor de usuarios");
             System.out.println("2. Iniciar sesion");
             System.out.println("3. Ingresar y enviar datos de la cancion");
             System.out.println("4. Listar datos de las canciones registradas");

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilidades;
 
 import java.io.BufferedInputStream;
@@ -18,7 +14,7 @@ import servidor.DTO.CancionDTOO;
 
 /**
  *
- * @author LENOVO
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
  */
 public class UtilidadesAudio {
 
@@ -36,7 +32,7 @@ public class UtilidadesAudio {
             String titulo = tag.getFirst(FieldKey.TITLE);
             String nameFile = file.getName();
             String tipo = identificarExtencion(nameFile);
-            objCancion = new CancionDTOO(tipo,artista, titulo, tamMB);
+            objCancion = new CancionDTOO(tipo, artista, titulo, tamMB);
 
         } catch (Exception ex) {
             System.out.println("Error al leer los métadatos del archivo" + ex);

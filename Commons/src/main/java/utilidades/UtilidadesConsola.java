@@ -3,6 +3,10 @@ package utilidades;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class UtilidadesConsola {
 
     public static int leerEntero() {

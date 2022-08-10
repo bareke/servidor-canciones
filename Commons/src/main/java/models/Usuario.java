@@ -2,6 +2,10 @@ package models;
 
 import java.util.Date;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class Usuario {
 
     private String id;

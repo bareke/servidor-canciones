@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author snt-2
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
  */
 public class NotificacionDTO implements Serializable {
 
