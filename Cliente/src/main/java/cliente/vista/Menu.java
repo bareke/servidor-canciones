@@ -1,15 +1,16 @@
 package cliente.vista;
 
 import interfaces.ControladorGestorCancionInt;
-import java.io.File;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Usuario;
 import servicios.UsuarioServices;
 import servidor.DTO.CancionDTOO;
 import utilidades.UtilidadesAudio;
-import static utilidades.UtilidadesAudio.identificarExtencion;
 import utilidades.UtilidadesConsola;
+import utilidades.UtilidadesValidaciones;
 
 /**
  *
@@ -29,7 +30,7 @@ public class Menu {
         int opcion = 0;
         do {
             System.out.println();
-            System.out.println("\t===Menu===");
+            System.out.println("===Menu===");
             System.out.println("1. Registrarse en el servidor de usuarios");
             System.out.println("2. Iniciar sesion");
             System.out.println("3. Ingresar y enviar datos de la cancion");
@@ -64,104 +65,106 @@ public class Menu {
 
     private void Opcion1() {
         objUsuario = new Usuario();
-        System.out.println("\nRegistrando un nuevo Usuario");
-        System.out.println("Ingrese el nombre: ");
+        System.out.println("\n Registrando usuario");
+
+        System.out.println("Nombre");
         objUsuario.setNombre(UtilidadesConsola.leerCadena());
-        System.out.println("Ingrese el apellido: ");
+
+        System.out.println("Apellido");
         objUsuario.setApellido(UtilidadesConsola.leerCadena());
-        System.out.println("Ingrese el correo: ");
+
+        System.out.println("Correo");
         objUsuario.setEmail(UtilidadesConsola.leerCadena());
-        System.out.println("Ingrese la contraseña: ");
+
+        System.out.println("Contraseña");
         objUsuario.setContraseña(UtilidadesConsola.leerCadena());
-        if (objUsuarioServices.registrarUsuario(objUsuario) == null) {
-            System.out.println("No se pudo registrar el usuario...\n");
-            return;
+
+        if (objUsuarioServices.registrarUsuario(objUsuario) != null) {
+            System.out.println("Registro realizado satisfactoriamente...");
+        } else {
+            System.out.println("No se pudo realizar el registro...");
         }
-        System.out.println("Usuario registrado con exito.\n");
+
     }
 
     private void Opcion2() {
+        System.out.println("\n Iniciar sesion");
+
         objUsuario = new Usuario();
-        System.out.println("\nLogin");
-        System.out.println("Ingrese el correo: ");
+
+        System.out.println("Correo");
         objUsuario.setEmail(UtilidadesConsola.leerCadena());
-        System.out.println("Ingrese la contraseña: ");
+
+        System.out.println("Contraseña");
         objUsuario.setContraseña(UtilidadesConsola.leerCadena());
+
         objUsuario = objUsuarioServices.Login(objUsuario);
-        if (objUsuario == null) {
-            System.out.println("Usuario o Contraseña invalidas...");
-            return;
+        if (objUsuario != null) {
+            System.out.println("Hola de nuevo " + objUsuario.getNombre());
+        } else {
+            System.out.println("Correo o contraseña invalida...");
         }
-        System.out.println("Bienvenido: " + objUsuario.getNombre() + "\n");
+
     }
 
     private void Opcion3() {
+        System.out.println("\n Enviar cancion");
 
         if (objUsuario == null) {
-            System.out.println("No ha iniciado sesion...");
+            System.out.println("Error, no ha iniciado sesion.");
             return;
         }
 
-        try {
-            System.out.println("Ingrese el nombre de la canción: ");
-            String nombrecancion = UtilidadesConsola.leerCadena();
+        System.out.println("Nombre de la canción");
+        String nombreCancion = UtilidadesConsola.leerCadena();
 
-            File file = new File(nombrecancion);
-            if (file.exists()) {
-                if (identificarExtencion(nombrecancion).equals("mp3")) {
+        if (UtilidadesValidaciones.existe(nombreCancion)) {
+            CancionDTOO objCancion = UtilidadesAudio.leerMetadatos(nombreCancion);
 
-                    CancionDTOO objCancion = UtilidadesAudio.leerMetadatos(nombrecancion);
-                    if (objCancion != null) {
-                        byte[] arrayBytesCancion = UtilidadesAudio.obtenerBytesCancion(nombrecancion);
-                        objCancion.setArrayBytes(arrayBytesCancion);
+            if (objCancion != null) {
+                byte[] arrayBytesCancion = UtilidadesAudio.obtenerBytesCancion(nombreCancion);
+                objCancion.setArrayBytes(arrayBytesCancion);
 
-                        boolean valor = objRemoto.registrarCancion(objCancion, objUsuario.getToken());//invocación del método remoto
-                        if (valor) {
-                            System.out.println("Registro realizado satisfactoriamente...");
-                        } else {
-                            System.out.println("no se pudo realizar el registro...");
-                        }
+                try {
+                    if (objRemoto.registrarCancion(objCancion, objUsuario.getToken())) {
+                        System.out.println("Registro realizado satisfactoriamente...");
+                    } else {
+                        System.out.println("No se pudo realizar el registro...");
                     }
-                } else {
-                    System.out.println("El unico tipo de cancion que se acepta es mp3");
+                } catch (RemoteException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
-                System.out.println("El archivo " + nombrecancion + " NO Existe");
             }
-        } catch (RemoteException e) {
-            System.out.println("La operacion no se pudo completar, intente nuevamente..." + e.getMessage());
         }
     }
 
     private void Opcion4() {
 
         if (objUsuario == null) {
-            System.out.println("No ha iniciado sesion...");
+            System.out.println("Error, no ha iniciado sesion.");
             return;
         }
 
+        ArrayList<CancionDTOO> canciones = new ArrayList();
         try {
-
-            ArrayList<CancionDTOO> canciones = objRemoto.listarCanciones();
-            if (!canciones.isEmpty()) {
-                System.out.println("==Canciones==");
-                for (CancionDTOO cancion : canciones) {
-                    System.out.println("Id: " + cancion.getId());
-                    System.out.println("Titulo " + cancion.getTitulo());
-                    System.out.println("Artista " + cancion.getArtista());
-                    System.out.println("Tipo: " + cancion.getTipo());
-                    System.out.println("Tamaño " + cancion.getTamKB() + " KB");
-                    System.out.println("");
-                }
-            } else {
-                System.out.println("No hay canciones registradas");
-            }
-
-        } catch (RemoteException e) {
-            System.out.println("La operación no se pudo completar, intente nuevamente...");
-            System.out.println("Excepcion generada: " + e.getMessage());
+            canciones = objRemoto.listarCanciones();
+        } catch (RemoteException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (canciones != null) {
+            System.out.println("Lista de canciones");
+            System.out.println();
 
+            for (CancionDTOO cancion : canciones) {
+                System.out.println("Id: " + cancion.getId());
+                System.out.println("Titulo: " + cancion.getTitulo());
+                System.out.println("Artista: " + cancion.getArtista());
+                System.out.println("Tipo: " + cancion.getTipo());
+                System.out.println("Tamaño: " + cancion.getTamKB());
+                System.out.println();
+            }
+        } else {
+            System.out.println("No existen canciones en el servidor.");
+        }
     }
-
 }

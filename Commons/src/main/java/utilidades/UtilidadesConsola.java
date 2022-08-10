@@ -35,7 +35,7 @@ public class UtilidadesConsola {
         boolean valido = false;
         do {
             try {
-                //System.out.println("Ingrese la opcion: ");
+                System.out.println("Ingrese la opcion: ");
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 linea = br.readLine();
                 valido = true;
