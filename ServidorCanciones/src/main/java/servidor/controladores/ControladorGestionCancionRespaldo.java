@@ -7,7 +7,7 @@ import utilidades.UtilidadesNSC;
 
 /**
  *
- * @author MXGALLEGO
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
  */
 public class ControladorGestionCancionRespaldo {
 
@@ -24,7 +24,7 @@ public class ControladorGestionCancionRespaldo {
         vectorDatosLocalizarNS[1] = "localhost";
         vectorDatosLocalizarNS[2] = "-ORBInitialPort";
         //System.out.println("Ingrese el puerto donde escucha el n_s");
-        vectorDatosLocalizarNS[3] = "2021";
+        vectorDatosLocalizarNS[3] = "2020";
 
         objRemoto = UtilidadesNSC.obtenerObjRemoto(vectorDatosLocalizarNS, "idObjetoRemoto");
 

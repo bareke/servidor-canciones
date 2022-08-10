@@ -11,6 +11,10 @@ import utilidades.UtilidadesAudio;
 import static utilidades.UtilidadesAudio.identificarExtencion;
 import utilidades.UtilidadesConsola;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class Menu {
 
     private final ControladorGestorCancionInt objRemoto;

@@ -9,6 +9,10 @@ import java.util.List;
 import servidor.DTO.CancionDTOO;
 import servidor.DTO.NotificacionDTO;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class ControladorGestionAdministradoresImpl extends UnicastRemoteObject implements ControladorGestionAdministradoresInt {
 
     private final List<AdministradorCallbackInt> referenciasAdministradores;

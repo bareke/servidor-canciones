@@ -2,7 +2,12 @@ package co.edu.unicauca.distribuidos.core.models;
 
 import java.util.Date;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class Usuario {
+
     private String id;
     private String nombre;
     private String apellido;
@@ -11,8 +16,8 @@ public class Usuario {
     private String token;
     private String contraseña;
 
-    public Usuario(String id, String nombre, String apellido, String email, 
-        Date createAt, String token, String contraseña ) {
+    public Usuario(String id, String nombre, String apellido, String email,
+            Date createAt, String token, String contraseña) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -107,5 +112,5 @@ public class Usuario {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    
+
 }

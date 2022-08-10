@@ -1,6 +1,5 @@
 package servidor.servicios;
 
-
 import java.rmi.RemoteException;
 import servidor.Repositorios.CancionRepository;
 import servidor.controladores.ControladorGestionAdministradoresImpl;
@@ -8,6 +7,10 @@ import servidor.controladores.ControladorGestorCancionesImpl;
 import utilidades.UtilidadesConsola;
 import utilidades.UtilidadesRegistroS;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class ServidorDeObjetos {
 
     public static void main(String args[]) throws RemoteException {
@@ -20,13 +23,11 @@ public class ServidorDeObjetos {
         System.out.println("Cual es el número de puerto por el cual escucha el rmiRegistry canciones");
         numPuertoRMIRegistryServidorCanciones = UtilidadesConsola.leerEntero();
 
-
         CancionRepository objRepository = new CancionRepository();
         ControladorGestionAdministradoresImpl objRemotoGestionAdministradores = new ControladorGestionAdministradoresImpl();
         ControladorGestorCancionesImpl objRemotoGestionCanciones = new ControladorGestorCancionesImpl(
                 objRepository, objRemotoGestionAdministradores);
-        
-        
+
         try {
             UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistryServidorCanciones);
             UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoGestionCanciones, direccionIpRMIRegistryServidorCanciones,

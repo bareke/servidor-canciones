@@ -8,54 +8,58 @@ import org.springframework.stereotype.Service;
 import co.edu.unicauca.distribuidos.core.models.Usuario;
 import co.edu.unicauca.distribuidos.core.repositories.UsuarioRepository;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
 
-	@Autowired
-	private UsuarioRepository servicioAccesoBaseDatos;
+    @Autowired
+    private UsuarioRepository servicioAccesoBaseDatos;
 
-	@Override
-	public List<Usuario> findAll() {
-		return this.servicioAccesoBaseDatos.findAll();
-	}
+    @Override
+    public List<Usuario> findAll() {
+        return this.servicioAccesoBaseDatos.findAll();
+    }
 
-	@Override
-	public Usuario findById(String id) {
-		return this.servicioAccesoBaseDatos.findById(id);
-	}
+    @Override
+    public Usuario findById(String id) {
+        return this.servicioAccesoBaseDatos.findById(id);
+    }
 
-	@Override
-	public Usuario save(Usuario cliente) {
-		return this.servicioAccesoBaseDatos.save(cliente);
-	}
+    @Override
+    public Usuario save(Usuario cliente) {
+        return this.servicioAccesoBaseDatos.save(cliente);
+    }
 
-	@Override
-	public Usuario update(String id, Usuario cliente) {
-		return this.servicioAccesoBaseDatos.update(id, cliente);
-	}
+    @Override
+    public Usuario update(String id, Usuario cliente) {
+        return this.servicioAccesoBaseDatos.update(id, cliente);
+    }
 
-	@Override
-	public boolean delete(String id) {
-		return this.servicioAccesoBaseDatos.delete(id);
-	}
+    @Override
+    public boolean delete(String id) {
+        return this.servicioAccesoBaseDatos.delete(id);
+    }
 
-	@Override
-	public Usuario Registrar(Usuario nuevoUsuario) {
-		return this.servicioAccesoBaseDatos.Registrar(nuevoUsuario);
-	}
+    @Override
+    public Usuario Registrar(Usuario nuevoUsuario) {
+        return this.servicioAccesoBaseDatos.Registrar(nuevoUsuario);
+    }
 
-	@Override
-	public boolean ExisteEmail(String email) {
-		return this.servicioAccesoBaseDatos.ExisteEmail(email);
-	}
+    @Override
+    public boolean ExisteEmail(String email) {
+        return this.servicioAccesoBaseDatos.ExisteEmail(email);
+    }
 
-	@Override
-	public Usuario Login(String email, String contraseña) {
-		return this.servicioAccesoBaseDatos.Login(email, contraseña);
-	}
+    @Override
+    public Usuario Login(String email, String contraseña) {
+        return this.servicioAccesoBaseDatos.Login(email, contraseña);
+    }
 
-	@Override
-	public boolean ValidarToken(String token) {
-		return this.servicioAccesoBaseDatos.ValidarToken(token);
-	}
+    @Override
+    public boolean ValidarToken(String token) {
+        return this.servicioAccesoBaseDatos.ValidarToken(token);
+    }
 }

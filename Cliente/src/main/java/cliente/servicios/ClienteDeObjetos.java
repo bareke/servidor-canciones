@@ -5,6 +5,10 @@ import interfaces.ControladorGestorCancionInt;
 import utilidades.UtilidadesConsola;
 import utilidades.UtilidadesRegistroC;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class ClienteDeObjetos {
 
     private static ControladorGestorCancionInt objRemoto;

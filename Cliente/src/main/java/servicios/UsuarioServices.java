@@ -10,6 +10,10 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 
 import models.Usuario;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class UsuarioServices {
 
     private String endPoint;
@@ -20,32 +24,6 @@ public class UsuarioServices {
         this.objClientePeticiones = ClientBuilder.newClient().register(new JacksonFeature());
     }
 
-    /*
-    public Cliente consultarCliente(Integer id) {
-        Cliente objCliente = null;
-
-        WebTarget target = this.objClientePeticiones.target(this.endPoint + "/" + id);
-
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
-
-        objCliente = objPeticion.get(Cliente.class);
-
-        return objCliente;
-    }
-
-    public List<Cliente> listarClientes() {
-        List<Cliente> listaClientes = null;
-
-        WebTarget target = this.objClientePeticiones.target(this.endPoint);
-
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
-
-        listaClientes = objPeticion.get(new GenericType<List<Cliente>>() {
-        });
-
-        return listaClientes;
-    }
-     */
     public Usuario registrarUsuario(Usuario objUsuarioRegistar) {
         Usuario objUsuario = null;
         WebTarget target = this.objClientePeticiones.target(this.endPoint);
@@ -68,31 +46,4 @@ public class UsuarioServices {
         return objUsuario;
     }
 
-    /*
-    public Cliente actualizarCliente(Cliente objClienteActualizar, Integer id) {
-        Cliente objCliente = null;
-
-        WebTarget target = this.objClientePeticiones.target(this.endPoint + "/" + id);
-
-        Entity<Cliente> data = Entity.entity(objClienteActualizar, MediaType.APPLICATION_JSON_TYPE);
-
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
-
-        objCliente = objPeticion.put(data, Cliente.class);
-
-        return objCliente;
-    }
-
-    public Boolean eliminarCliente(Integer id) {
-        Boolean bandera = false;
-
-        WebTarget target = this.objClientePeticiones.target(this.endPoint + "/" + id);
-
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
-
-        bandera = objPeticion.delete(Boolean.class);
-
-        return bandera;
-    }
-     */
 }

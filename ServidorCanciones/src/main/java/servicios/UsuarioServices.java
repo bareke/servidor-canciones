@@ -2,14 +2,15 @@ package servicios;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
-import models.Usuario;
-
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class UsuarioServices {
 
     private String endPoint;

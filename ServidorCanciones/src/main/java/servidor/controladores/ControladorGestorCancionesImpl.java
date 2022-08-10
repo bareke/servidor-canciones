@@ -8,6 +8,10 @@ import servicios.UsuarioServices;
 import servidor.DTO.CancionDTOO;
 import servidor.Repositorios.CancionRepositoryInt;
 
+/**
+ *
+ * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
+ */
 public class ControladorGestorCancionesImpl extends UnicastRemoteObject implements ControladorGestorCancionInt {
 
     private final CancionRepositoryInt objCancionesRepository;
@@ -29,7 +33,7 @@ public class ControladorGestorCancionesImpl extends UnicastRemoteObject implemen
             return false;
         }
         System.out.println("El token es valido");
-        
+
         if (this.objCancionesRepository.registrarCancion(objCancion)) {
             bandera = true;
             ControladorGestionCancionRespaldo objRemotoRespaldo = new ControladorGestionCancionRespaldo();
