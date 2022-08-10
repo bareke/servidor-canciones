@@ -110,12 +110,7 @@ public class Menu {
     private void Opcion3() {
         System.out.println("\n Enviar cancion");
 
-        if (objUsuario == null) {
-            System.out.println("Error, no ha iniciado sesion.");
-            return;
-        }
-
-        System.out.println("Nombre de la canción");
+        System.out.println("Nombre de la cancion");
         String nombreCancion = UtilidadesConsola.leerCadena();
 
         if (UtilidadesValidaciones.existe(nombreCancion)) {
@@ -139,19 +134,14 @@ public class Menu {
     }
 
     private void Opcion4() {
-
-        if (objUsuario == null) {
-            System.out.println("Error, no ha iniciado sesion.");
-            return;
-        }
-
         ArrayList<CancionDTOO> canciones = new ArrayList();
         try {
             canciones = objRemoto.listarCanciones();
         } catch (RemoteException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (canciones != null) {
+
+        if (!canciones.isEmpty()) {
             System.out.println("Lista de canciones");
             System.out.println();
 
