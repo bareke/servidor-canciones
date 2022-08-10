@@ -16,7 +16,7 @@ public class AdminitradorCallbackImpl extends UnicastRemoteObject implements Adm
     }
 
     @Override
-    public void notificarNuevaCancion(NotificacionDTO objNotificacion) throws RemoteException {
+    public void notificarCancion(NotificacionDTO objNotificacion) throws RemoteException {
         System.out.println(objNotificacion.toString());
     }
 
