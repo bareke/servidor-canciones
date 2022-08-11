@@ -74,10 +74,10 @@ public class Menu {
         objUsuario.setApellido(UtilidadesConsola.leerCadena());
 
         System.out.println("Correo");
-        objUsuario.setEmail(UtilidadesConsola.leerCadena());
+        objUsuario.setCorreo(UtilidadesConsola.leerCadena());
 
         System.out.println("Contraseña");
-        objUsuario.setContraseña(UtilidadesConsola.leerCadena());
+        objUsuario.setContrasena(UtilidadesConsola.leerCadena());
 
         if (objUsuarioServices.registrarUsuario(objUsuario) != null) {
             System.out.println("Registro realizado satisfactoriamente...");
@@ -93,10 +93,10 @@ public class Menu {
         objUsuario = new Usuario();
 
         System.out.println("Correo");
-        objUsuario.setEmail(UtilidadesConsola.leerCadena());
+        objUsuario.setCorreo(UtilidadesConsola.leerCadena());
 
         System.out.println("Contraseña");
-        objUsuario.setContraseña(UtilidadesConsola.leerCadena());
+        objUsuario.setContrasena(UtilidadesConsola.leerCadena());
 
         objUsuario = objUsuarioServices.Login(objUsuario);
         if (objUsuario != null) {

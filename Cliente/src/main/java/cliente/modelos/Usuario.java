@@ -11,23 +11,23 @@ public class Usuario {
     private String id;
     private String nombre;
     private String apellido;
-    private String email;
+    private String correo;
     private Date createAt;
     private String token;
-    private String contraseña;
+    private String contrasena;
 
     public Usuario() {
     }
 
     public Usuario(String id, String nombre, String apellido, String email,
-            Date createAt, String token, String contraseña) {
+            Date createAt, String token, String contrasena) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.email = email;
+        this.correo = email;
         this.createAt = createAt;
         this.token = token;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public String getToken() {
@@ -38,12 +38,12 @@ public class Usuario {
         this.token = token;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getId() {
@@ -70,12 +70,12 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public Date getCreateAt() {

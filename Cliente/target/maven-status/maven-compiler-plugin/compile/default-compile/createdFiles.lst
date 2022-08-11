@@ -1,3 +1,11 @@
+cliente\modelos\CancionDTO.class
+interfaces\ControladorGestorCancionInt.class
+utilidades\UtilidadesRegistroC.class
+utilidades\UtilidadesConsola.class
 cliente\vista\Menu.class
-servicios\UsuarioServices.class
+utilidades\UtilidadesValidaciones.class
 cliente\servicios\ClienteDeObjetos.class
+models\Usuario.class
+utilidades\UtilidadesAudio.class
+servicios\UsuarioServices.class
+utilidades\ControladorGestorCancionInt.class

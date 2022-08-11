@@ -1,2 +1,8 @@
 cliente\controladores\AdminitradorCallbackImpl.class
+cliente\modelos\CancionDTO.class
+interfaces\ControladorGestionAdministradoresInt.class
+interfaces\AdministradorCallbackInt.class
 cliente\servicios\ClienteDeObjetos.class
+cliente\interfaces\ControladorGestorCancionInt.class
+cliente\utilidades\UtilidadesRegistroC.class
+cliente\modelos\NotificacionDTO.class

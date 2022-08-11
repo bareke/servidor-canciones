@@ -37,7 +37,7 @@ public class UsuarioServices {
         Usuario objUsuario = null;
 
         WebTarget target = this.objClientePeticiones.target(
-                this.endPoint + "/" + objUsuarioLogin.getEmail() + "/" + objUsuarioLogin.getContraseña());
+                this.endPoint + "/" + objUsuarioLogin.getCorreo() + "/" + objUsuarioLogin.getContrasena());
 
         Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
 
