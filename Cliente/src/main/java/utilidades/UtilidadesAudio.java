@@ -1,6 +1,6 @@
 package utilidades;
 
-import cliente.modelos.CancionDTO;
+import cliente.modelos.Cancion;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,34 +12,40 @@ import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
-
 /**
  *
  * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
  */
 public class UtilidadesAudio {
 
-    public static CancionDTO leerMetadatos(String nombreCancion) {
-        CancionDTO objCancion = null;
+    public static Cancion leerMetadatos(String nombreCancion) {
+        String[] datosCancion = nombreCancion.split("\\.");
+
+        Cancion objCancion = null;
         try {
             PrintStream obj;
             obj = new PrintStream(new File("archivoSalida.txt"));
             System.setErr(obj);
             File file = new File(nombreCancion);
-            AudioFile f = AudioFileIO.read(file);
-            Tag tag = f.getTag();
-            int tamMB = (int) (file.length() / 1024);
-            String artista = tag.getFirst(FieldKey.ARTIST);
-            String titulo = tag.getFirst(FieldKey.TITLE);
-            String nameFile = file.getName();
-            String tipo = identificarExtencion(nameFile);
-            objCancion = new CancionDTO(tipo, artista, titulo, tamMB);
-            
 
+            if (file.exists()) {
+                if ("mp3".equals(datosCancion[1])) {
+                    AudioFile f = AudioFileIO.read(file);
+                    Tag tag = f.getTag();
+                    int tamanio = (int) (file.length() / 1024);
+                    String artista = tag.getFirst(FieldKey.ARTIST);
+                    String titulo = tag.getFirst(FieldKey.TITLE);
+                    String tipo = "mp3";
+                    objCancion = new Cancion(tipo, artista, titulo, tamanio);
+                } else {
+                    System.out.println("Canción no tiene la extensión mp3.");
+                }
+            } else {
+                System.out.println("Canción no existe.");
+            }
         } catch (Exception ex) {
-            System.out.println("Error al leer los métadatos del archivo" + ex);
+            System.out.println("Error al leer los métadatos del archivo.");
         }
-
         return objCancion;
     }
 
@@ -60,13 +66,4 @@ public class UtilidadesAudio {
         return arrayBytesCancion;
     }
 
-    public static String identificarExtencion(String fileName) {
-        String varExtension = "";
-
-        int i = fileName.lastIndexOf('.');
-        if (i > 0) {
-            varExtension = fileName.substring(i + 1);
-        }
-        return varExtension;
-    }
 }

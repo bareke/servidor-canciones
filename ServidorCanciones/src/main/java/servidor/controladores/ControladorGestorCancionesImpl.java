@@ -5,6 +5,7 @@ import interfaces.ControladorGestorCancionInt;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import modelos.Cancion;
 import servicios.UsuarioServices;
 import servidor.Repositorios.CancionRepositoryInt;
 import sop_corba.ControladorCancionIntOperations;
@@ -27,7 +28,7 @@ public class ControladorGestorCancionesImpl extends UnicastRemoteObject implemen
     }
 
     @Override
-    public boolean registrarCancion(CancionDTO objCancion, String token) throws RemoteException {
+    public boolean registrarCancion(Cancion objCancion, String token) throws RemoteException {
         boolean bandera = false;
         UsuarioServices objUsuarioService = new UsuarioServices();
 
@@ -38,8 +39,15 @@ public class ControladorGestorCancionesImpl extends UnicastRemoteObject implemen
                 bandera = true;
                 ClienteDeObjectos clienteObjetos = new ClienteDeObjectos();
                 ControladorCancionIntOperations servidorRespaldo = ClienteDeObjectos.obtenerReferenciaRemota();
-                
-                servidorRespaldo.registrarCancion(objCancion);
+
+                CancionDTO objCancionDTO = new CancionDTO(objCancion.getId(), objCancion.getArtista(), objCancion.getTitulo(), objCancion.getTipo(), objCancion.getTamKB(), objCancion.getArrayBytes());
+                objCancionDTO.artista = objCancion.getArtista();
+                objCancionDTO.titulo = objCancion.getTitulo();
+                objCancionDTO.tipo = objCancion.getTipo();
+                objCancionDTO.tamKB = objCancion.getTamKB();
+                objCancionDTO.audio = objCancion.getArrayBytes();
+
+                servidorRespaldo.registrarCancion(objCancionDTO);
                 this.objReferenciaRemota.notificarAdministradores(objCancion, objCancionesRepository.listarCanciones().size());
 
                 System.out.println("Registro realizado satisfactoriamente...");
@@ -54,7 +62,7 @@ public class ControladorGestorCancionesImpl extends UnicastRemoteObject implemen
     }
 
     @Override
-    public ArrayList<CancionDTO> listarCanciones() throws RemoteException {
+    public ArrayList<Cancion> listarCanciones() throws RemoteException {
         return this.objCancionesRepository.listarCanciones();
     }
 }

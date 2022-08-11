@@ -1,7 +1,7 @@
 package servidor.Repositorios;
 
 import java.util.ArrayList;
-import sop_corba.ControladorCancionIntPackage.CancionDTO;
+import modelos.Cancion;
 
 /**
  *
@@ -9,7 +9,7 @@ import sop_corba.ControladorCancionIntPackage.CancionDTO;
  */
 public interface CancionRepositoryInt {
 
-    public boolean registrarCancion(CancionDTO objCancion);
+    public boolean registrarCancion(Cancion objCancion);
 
-    public ArrayList<CancionDTO> listarCanciones();
+    public ArrayList<Cancion> listarCanciones();
 }

@@ -1,4 +1,4 @@
-package models;
+package cliente.modelos;
 
 import java.util.Date;
 
@@ -19,12 +19,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String email,
+    public Usuario(String id, String nombre, String apellido, String correo,
             Date createAt, String token, String contrasena) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo = email;
+        this.correo = correo;
         this.createAt = createAt;
         this.token = token;
         this.contrasena = contrasena;

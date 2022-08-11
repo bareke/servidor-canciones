@@ -1,12 +1,10 @@
 package cliente.vista;
 
-import cliente.modelos.CancionDTO;
+import cliente.modelos.Cancion;
+import cliente.modelos.Usuario;
 import interfaces.ControladorGestorCancionInt;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import models.Usuario;
 import servicios.UsuarioServices;
 import utilidades.UtilidadesAudio;
 import utilidades.UtilidadesConsola;
@@ -21,6 +19,7 @@ public class Menu {
     private final ControladorGestorCancionInt objRemoto;
     private final UsuarioServices objUsuarioServices = new UsuarioServices();
     private Usuario objUsuario;
+    private int id = 1;
 
     public Menu(ControladorGestorCancionInt objRemoto) {
         this.objRemoto = objRemoto;
@@ -114,7 +113,7 @@ public class Menu {
         String nombreCancion = UtilidadesConsola.leerCadena();
 
         if (UtilidadesValidaciones.existe(nombreCancion)) {
-            CancionDTO objCancion = UtilidadesAudio.leerMetadatos(nombreCancion);
+            Cancion objCancion = UtilidadesAudio.leerMetadatos(nombreCancion);
 
             if (objCancion != null) {
                 byte[] arrayBytesCancion = UtilidadesAudio.obtenerBytesCancion(nombreCancion);
@@ -123,29 +122,30 @@ public class Menu {
                 try {
                     if (objRemoto.registrarCancion(objCancion, objUsuario.getToken())) {
                         System.out.println("Registro realizado satisfactoriamente...");
+                        this.id++;
                     } else {
                         System.out.println("No se pudo realizar el registro...");
                     }
                 } catch (RemoteException ex) {
-                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 }
             }
         }
     }
 
     private void Opcion4() {
-        ArrayList<CancionDTO> canciones = new ArrayList();
+        ArrayList<Cancion> canciones = new ArrayList();
         try {
             canciones = objRemoto.listarCanciones();
         } catch (RemoteException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
 
         if (!canciones.isEmpty()) {
             System.out.println("Lista de canciones");
             System.out.println();
 
-            for (CancionDTO cancion : canciones) {
+            for (Cancion cancion : canciones) {
                 System.out.println("Id: " + cancion.getId());
                 System.out.println("Titulo: " + cancion.getTitulo());
                 System.out.println("Artista: " + cancion.getArtista());

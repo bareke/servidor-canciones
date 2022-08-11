@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import sop_corba.ControladorCancionIntPackage.CancionDTO;
+import modelos.Cancion;
 
 /**
  *
@@ -14,7 +14,7 @@ import sop_corba.ControladorCancionIntPackage.CancionDTO;
  */
 public class CancionRepository implements CancionRepositoryInt {
 
-    private final ArrayList<CancionDTO> canciones;
+    private final ArrayList<Cancion> canciones;
 
     public CancionRepository() {
         this.canciones = new ArrayList();
@@ -37,26 +37,26 @@ public class CancionRepository implements CancionRepositoryInt {
     }
 
     @Override
-    public boolean registrarCancion(CancionDTO objCancion) {
+    public boolean registrarCancion(Cancion objCancion) {
 
         boolean bandera;
-        objCancion.id = (canciones.size() + 1);
-        bandera = this.almacenarArchivo(objCancion.audio);
+        objCancion.setId((canciones.size() + 1));
+        bandera = this.almacenarArchivo(objCancion.getArrayBytes());
         this.canciones.add(objCancion);
         System.out.println();
         System.out.println("Archivo creado en el servidor de canciones");
         System.out.println("Metadatos del archivo: ");
-        System.out.println("Titulo: " + objCancion.titulo);
-        System.out.println("Artista: " + objCancion.artista);
-        System.out.println("Tipo: " + objCancion.tipo);
-        System.out.println("Tamaño: " + objCancion.tamKB);
+        System.out.println("Titulo: " + objCancion.getTitulo());
+        System.out.println("Artista: " + objCancion.getArtista());
+        System.out.println("Tipo: " + objCancion.getTipo());
+        System.out.println("Tamaño: " + objCancion.getTamKB());
         System.out.println();
 
         return bandera;
     }
 
     @Override
-    public ArrayList<CancionDTO> listarCanciones() {
+    public ArrayList<Cancion> listarCanciones() {
         return this.canciones;
     }
 

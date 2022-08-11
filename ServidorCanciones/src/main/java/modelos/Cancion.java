@@ -1,4 +1,4 @@
-package cliente.modelos;
+package modelos;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @authors Cristian Collazos, Diego Rojas y Mayerly Camilo
  */
-public class CancionDTO implements Serializable {
+public class Cancion implements Serializable {
 
     private int id;
     private String tipo;
@@ -15,7 +15,7 @@ public class CancionDTO implements Serializable {
     private int tamKB;
     private byte[] arrayBytes;
 
-    public CancionDTO(String tipo, String artista, String titulo, int tamKB) {
+    public Cancion(String tipo, String artista, String titulo, int tamKB) {
         this.artista = artista;
         this.titulo = titulo;
         this.tamKB = tamKB;

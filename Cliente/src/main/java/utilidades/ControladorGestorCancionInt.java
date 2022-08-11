@@ -1,6 +1,6 @@
 package utilidades;
 
-import cliente.modelos.CancionDTO;
+import cliente.modelos.Cancion;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public interface ControladorGestorCancionInt extends Remote {
 
     //Definicion del primer método remoto
-    public boolean registrarCancion(CancionDTO objCancion, String token) throws RemoteException;
+    public boolean registrarCancion(Cancion objCancion, String token) throws RemoteException;
 
     //cada definición del método debe especificar que puede lanzar la excepción java.rmi.RemoteException
-    public ArrayList<CancionDTO> listarCanciones() throws RemoteException;
+    public ArrayList<Cancion> listarCanciones() throws RemoteException;
 }

@@ -3,7 +3,7 @@ package interfaces;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import sop_corba.ControladorCancionIntPackage.CancionDTO;
+import modelos.Cancion;
 
 /**
  *
@@ -13,8 +13,8 @@ import sop_corba.ControladorCancionIntPackage.CancionDTO;
 public interface ControladorGestorCancionInt extends Remote {
 
     //Definicion del primer método remoto
-    public boolean registrarCancion(CancionDTO objCancion, String token) throws RemoteException;
+    public boolean registrarCancion(Cancion objCancion, String token) throws RemoteException;
 
     //cada definición del método debe especificar que puede lanzar la excepción java.rmi.RemoteException
-    public ArrayList<CancionDTO> listarCanciones() throws RemoteException;
+    public ArrayList<Cancion> listarCanciones() throws RemoteException;
 }
