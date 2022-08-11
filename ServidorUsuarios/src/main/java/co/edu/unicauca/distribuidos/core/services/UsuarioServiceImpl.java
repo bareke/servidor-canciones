@@ -29,37 +29,22 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Usuario save(Usuario cliente) {
-        return this.servicioAccesoBaseDatos.save(cliente);
+    public Usuario save(Usuario usuario) {
+        return this.servicioAccesoBaseDatos.save(usuario);
     }
 
     @Override
-    public Usuario update(String id, Usuario cliente) {
-        return this.servicioAccesoBaseDatos.update(id, cliente);
+    public boolean existeCorreo(String correo) {
+        return this.servicioAccesoBaseDatos.existeCorreo(correo);
     }
 
     @Override
-    public boolean delete(String id) {
-        return this.servicioAccesoBaseDatos.delete(id);
+    public Usuario iniciarSesion(String correo, String contrasena) {
+        return this.servicioAccesoBaseDatos.iniciarSesion(correo, contrasena);
     }
 
     @Override
-    public Usuario Registrar(Usuario nuevoUsuario) {
-        return this.servicioAccesoBaseDatos.Registrar(nuevoUsuario);
-    }
-
-    @Override
-    public boolean ExisteEmail(String email) {
-        return this.servicioAccesoBaseDatos.ExisteEmail(email);
-    }
-
-    @Override
-    public Usuario Login(String email, String contraseña) {
-        return this.servicioAccesoBaseDatos.Login(email, contraseña);
-    }
-
-    @Override
-    public boolean ValidarToken(String token) {
-        return this.servicioAccesoBaseDatos.ValidarToken(token);
+    public boolean existeToken(String token) {
+        return this.servicioAccesoBaseDatos.existeToken(token);
     }
 }

@@ -20,11 +20,6 @@ public class ControladorGestorCancionesImpl extends ControladorCancionIntPOA {
     @Override
     public boolean registrarCancion(CancionDTO objCancion) {
         boolean bandera = false;
-        //determinar si la canción existe
-        //si existe armar una respuesta con un codigo y un mensaje
-        // si no existe
-        // registro la camción
-        //armo la respuesta con un codigo, un mensaje y con la canción registrada
         if (this.objCancionesRepository.registrarCancion(objCancion)) {
             bandera = true;
         }

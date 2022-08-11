@@ -1,12 +1,14 @@
 package servidor.controladores;
 
+import servidor.servicios.ClienteDeObjectos;
 import interfaces.ControladorGestorCancionInt;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import servicios.UsuarioServices;
-import servidor.DTO.CancionDTOO;
 import servidor.Repositorios.CancionRepositoryInt;
+import sop_corba.ControladorCancionIntOperations;
+import sop_corba.ControladorCancionIntPackage.CancionDTO;
 
 /**
  *
@@ -19,32 +21,40 @@ public class ControladorGestorCancionesImpl extends UnicastRemoteObject implemen
 
     public ControladorGestorCancionesImpl(CancionRepositoryInt objCancionesRepository,
             ControladorGestionAdministradoresImpl objReferenciaRemota) throws RemoteException {
-        super(); //se asigna un puerto de escucha al OR
+        super();
         this.objCancionesRepository = objCancionesRepository;
         this.objReferenciaRemota = objReferenciaRemota;
     }
 
     @Override
-    public boolean registrarCancion(CancionDTOO objCancion, String token) throws RemoteException {
+    public boolean registrarCancion(CancionDTO objCancion, String token) throws RemoteException {
         boolean bandera = false;
         UsuarioServices objUsuarioService = new UsuarioServices();
-        if (!objUsuarioService.ValidarToken(token)) {
-            System.out.println("El token no es valido");
-            return false;
-        }
-        System.out.println("El token es valido");
 
-        if (this.objCancionesRepository.registrarCancion(objCancion)) {
-            bandera = true;
-            ControladorGestionCancionRespaldo objRemotoRespaldo = new ControladorGestionCancionRespaldo();
-            objRemotoRespaldo.guardarCopia(objCancion);
-            this.objReferenciaRemota.notificarAdministradores(objCancion, objCancionesRepository.listarCanciones().size());
+        if (objUsuarioService.existeToken(token)) {
+            System.out.println("Token valido");
+
+            if (this.objCancionesRepository.registrarCancion(objCancion)) {
+                bandera = true;
+                ClienteDeObjectos clienteObjetos = new ClienteDeObjectos();
+                ControladorCancionIntOperations servidorRespaldo = ClienteDeObjectos.obtenerReferenciaRemota();
+                
+                servidorRespaldo.registrarCancion(objCancion);
+                this.objReferenciaRemota.notificarAdministradores(objCancion, objCancionesRepository.listarCanciones().size());
+
+                System.out.println("Registro realizado satisfactoriamente...");
+            } else {
+                System.out.println("No se pudo realizar el registro...");
+            }
+        } else {
+            System.out.println("Error, el token no es valido");
         }
+
         return bandera;
     }
 
     @Override
-    public ArrayList<CancionDTOO> listarCanciones() throws RemoteException {
+    public ArrayList<CancionDTO> listarCanciones() throws RemoteException {
         return this.objCancionesRepository.listarCanciones();
     }
 }

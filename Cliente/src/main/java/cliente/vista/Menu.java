@@ -134,7 +134,7 @@ public class Menu {
     }
 
     private void Opcion4() {
-        ArrayList<CancionDTOO> canciones = new ArrayList();
+        ArrayList<CancionDTO> canciones = new ArrayList();
         try {
             canciones = objRemoto.listarCanciones();
         } catch (RemoteException ex) {
@@ -145,7 +145,7 @@ public class Menu {
             System.out.println("Lista de canciones");
             System.out.println();
 
-            for (CancionDTOO cancion : canciones) {
+            for (CancionDTO cancion : canciones) {
                 System.out.println("Id: " + cancion.getId());
                 System.out.println("Titulo: " + cancion.getTitulo());
                 System.out.println("Artista: " + cancion.getArtista());

@@ -27,13 +27,14 @@ public class CancionRepository implements CancionRepositoryInt {
         return this.listaCanciones;
     }
 
-    private boolean almacenarArchivo(byte array[], String nombreCancion) {
-        int varIncremento = listaCanciones.size() + 1;
+    private boolean almacenarArchivo(byte array[]) {
+        int cantidad = listaCanciones.size() + 1;
         boolean bandera = true;
+
         try {
-            File objFile = new File("misCanciones/copia_Cancion" + varIncremento + ".mp3");// archivo donde se almacenara la canción
+            File objFile = new File("misCanciones/copia_Cancion" + cantidad + ".mp3");
             OutputStream output = new FileOutputStream(objFile);
-            output.write(array);// escribiendo la canción en el archivo
+            output.write(array);
         } catch (FileNotFoundException ex) {
             bandera = false;
         } catch (IOException ex) {
@@ -47,15 +48,16 @@ public class CancionRepository implements CancionRepositoryInt {
     public boolean registrarCancion(CancionDTO objCancion) {
 
         boolean bandera;
-        objCancion.id = (this.listaCanciones.size());
-        bandera = this.almacenarArchivo(objCancion.getAudio(), objCancion.getTitulo());
+        objCancion.id = this.listaCanciones.size();
+        bandera = this.almacenarArchivo(objCancion.audio);
         this.listaCanciones.add(objCancion);
+
         System.out.println("Archivo creado en el servidor de Respaldo");
         System.out.println("Metadatos del archivo: ");
-        System.out.println("titulo: " + objCancion.getTitulo());
-        System.out.println("Artista: " + objCancion.getArtista());
-        //System.out.println("Tipo: " + objCancion.getTipo());
-        System.out.println("tamano en KB: " + objCancion.getTamKB());
+        System.out.println("titulo: " + objCancion.titulo);
+        System.out.println("Artista: " + objCancion.artista);
+        System.out.println("Tipo: " + objCancion.tipo);
+        System.out.println("tamano en KB: " + objCancion.tamKB);
         return bandera;
     }
 

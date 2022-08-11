@@ -14,8 +14,10 @@ public class ServidorDeObjetos {
 
         try {
             String[] vectorDatosLocalizarNS = new String[4];
+
             vectorDatosLocalizarNS[0] = "-ORBInitialHost";
             vectorDatosLocalizarNS[1] = "localhost";
+
             vectorDatosLocalizarNS[2] = "-ORBInitialPort";
             vectorDatosLocalizarNS[3] = "2020";
 

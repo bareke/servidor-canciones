@@ -14,21 +14,21 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 public class UsuarioServices {
 
     private String endPoint;
-    private Client objClientePeticiones;
+    private Client objUsuarioPeticiones;
 
     public UsuarioServices() {
-        this.endPoint = "http://localhost:4000/api/usuarios";
-        this.objClientePeticiones = ClientBuilder.newClient().register(new JacksonFeature());
+        this.endPoint = "http://localhost:4000/api/";
+        this.objUsuarioPeticiones = ClientBuilder.newClient().register(new JacksonFeature());
     }
 
-    public boolean ValidarToken(String token) {
-        boolean isTokenValido;
+    public boolean existeToken(String token) {
+        boolean bandera;
 
-        WebTarget target = this.objClientePeticiones.target(this.endPoint + "/" + token);
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+        WebTarget target = this.objUsuarioPeticiones.target(this.endPoint + "usuarios/" + token);
+        Builder objRespuesta = target.request(MediaType.APPLICATION_JSON_TYPE);
 
-        isTokenValido = objPeticion.get(boolean.class);
+        bandera = objRespuesta.get(boolean.class);
 
-        return isTokenValido;
+        return bandera;
     }
 }

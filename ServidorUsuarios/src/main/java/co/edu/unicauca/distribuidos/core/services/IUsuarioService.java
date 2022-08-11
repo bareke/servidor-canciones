@@ -14,18 +14,12 @@ public interface IUsuarioService {
 
     public Usuario findById(String id);
 
-    public Usuario save(Usuario cliente);
+    public Usuario save(Usuario usuario);
 
-    public Usuario update(String id, Usuario cliente);
+    public Usuario iniciarSesion(String email, String contraseña);
 
-    public boolean delete(String id);
+    public boolean existeToken(String token);
 
-    public Usuario Registrar(Usuario nuevoUsuario);
-
-    public Usuario Login(String email, String contraseña);
-
-    public boolean ValidarToken(String token);
-
-    public boolean ExisteEmail(String email);
+    public boolean existeCorreo(String correo);
 
 }
