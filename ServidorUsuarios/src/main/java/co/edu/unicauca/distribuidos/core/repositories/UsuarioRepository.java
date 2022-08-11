@@ -16,62 +16,80 @@ import co.edu.unicauca.distribuidos.core.models.Usuario;
 @Service
 public class UsuarioRepository {
 
-    private ArrayList<Usuario> listaUsuarios;
+    private ArrayList<Usuario> usuarios;
 
     public UsuarioRepository() {
-        this.listaUsuarios = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
+        this.cargarUsuarios();
     }
 
     public List<Usuario> findAll() {
-        System.out.println("Invocando a listarclientes");
-        return this.listaUsuarios;
+        System.out.println("Invocando a listar usuarios");
+
+        return this.usuarios;
     }
 
     public Usuario findById(String id) {
-        System.out.println("Invocando a consultar un cliente");
-        Usuario objCliente = null;
+        System.out.println("Invocando a consultar un usuario");
 
-        for (Usuario cliente : listaUsuarios) {
-            if (cliente.getId() == id) {
-                objCliente = cliente;
+        Usuario objUsuario = null;
+
+        for (Usuario usuario : usuarios) {
+            if (usuario.getId() == id) {
+                objUsuario = usuario;
                 break;
             }
         }
 
-        return objCliente;
+        return objUsuario;
     }
 
-    public Usuario save(Usuario usuario) {
+
+    public Usuario register(Usuario usuario) {
         System.out.println("Invocando a registrar usuario");
 
-        if (!existeCorreo(usuario.getCorreo())) {
+        if (!checkEmail(usuario.getEmail())) {
             usuario.setId(UUID.randomUUID().toString());
             usuario.setToken(UUID.randomUUID().toString());
             usuario.setCreateAt(new Date());
-            listaUsuarios.add(usuario);
+
+            usuarios.add(usuario);
+
             return usuario;
         } else {
-            System.out.println("Ya existe un usuario con el email ingresado");
+            System.out.println("Error, existe un usuario con el mismo correo");
+
             return null;
         }
     }
 
-    public Usuario iniciarSesion(String email, String contrasena) {
+    public Usuario login(String email, String contraseña) {
         System.out.println("Invocando a iniciar sesion");
 
-        Usuario user = null;
-        for (Usuario item : listaUsuarios) {
-            if (item.getCorreo().equals(email) && item.getContrasena().equals(contrasena)) {
-                user = item;
+        Usuario usuario = null;
+        for (Usuario item : usuarios) {
+            if (item.getEmail().equals(email) && item.getContraseña().equals(contraseña)) {
+                usuario = item;
             }
         }
-        return user;
+        return usuario;
     }
 
-    public boolean existeToken(String token) {
-        System.out.println("Invocando a existe token");
+    public boolean checkEmail(String email) {
+        System.out.println("Invocando a verificar correo");
 
-        for (Usuario item : listaUsuarios) {
+        for (Usuario item : usuarios) {
+            if (item.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkToken(String token) {
+        System.out.println("Invocando a verificar token");
+
+        for (Usuario item : usuarios) {
             if (item.getToken().equals(token)) {
                 return true;
             }
@@ -79,13 +97,9 @@ public class UsuarioRepository {
         return false;
     }
 
-    public boolean existeCorreo(String correo) {
-        for (Usuario item : listaUsuarios) {
-            if (item.getCorreo().equals(correo)) {
-                return true;
-            }
-        }
-        return false;
+    private void cargarUsuarios() {
+        Usuario objUsuario = new Usuario(UUID.randomUUID().toString(), "Daniel", "Paz", "danielpaz@unicauca.edu.co", new Date(), UUID.randomUUID().toString(), "java");
+        this.usuarios.add(objUsuario);
     }
 
 }

@@ -29,22 +29,23 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Usuario save(Usuario usuario) {
-        return this.servicioAccesoBaseDatos.save(usuario);
+    public Usuario register(Usuario nuevoUsuario) {
+        return this.servicioAccesoBaseDatos.register(nuevoUsuario);
     }
 
     @Override
-    public boolean existeCorreo(String correo) {
-        return this.servicioAccesoBaseDatos.existeCorreo(correo);
+    public Usuario login(String email, String contraseña) {
+        return this.servicioAccesoBaseDatos.login(email, contraseña);
     }
 
     @Override
-    public Usuario iniciarSesion(String correo, String contrasena) {
-        return this.servicioAccesoBaseDatos.iniciarSesion(correo, contrasena);
+    public boolean checkToken(String token) {
+        return this.servicioAccesoBaseDatos.checkToken(token);
     }
 
     @Override
-    public boolean existeToken(String token) {
-        return this.servicioAccesoBaseDatos.existeToken(token);
+    public boolean checkEmail(String email) {
+        return this.servicioAccesoBaseDatos.checkEmail(email);
     }
+
 }

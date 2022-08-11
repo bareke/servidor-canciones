@@ -41,7 +41,7 @@ public class UtilidadesRegistroS {
         NameComponent path[] = ncref.to_name(idObjetoRemoto);
         ncref.rebind(path, href);
 
-        System.out.println("El Servidor esta listo y esperando ...");
+        System.out.println("El Servidor Respaldo esta listo y esperando ...");
 
         // esperan por las invocaciones desde los clientes
         orb.run();

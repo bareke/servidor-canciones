@@ -13,7 +13,6 @@ public final class CancionDTO implements org.omg.CORBA.portable.IDLEntity
   public int id = (int)0;
   public String artista = null;
   public String titulo = null;
-  public String tipo = null;
   public int tamKB = (int)0;
   public byte audio[] = null;
 
@@ -21,14 +20,55 @@ public final class CancionDTO implements org.omg.CORBA.portable.IDLEntity
   {
   } // ctor
 
-  public CancionDTO (int _id, String _artista, String _titulo, String _tipo, int _tamKB, byte[] _audio)
+  public CancionDTO (int _id, String _artista, String _titulo, int _tamKB, byte[] _audio)
   {
     id = _id;
     artista = _artista;
     titulo = _titulo;
-    tipo = _tipo;
     tamKB = _tamKB;
     audio = _audio;
   } // ctor
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public int getTamKB() {
+        return tamKB;
+    }
+
+    public void setTamKB(int tamKB) {
+        this.tamKB = tamKB;
+    }
+
+    public byte[] getAudio() {
+        return audio;
+    }
+
+    public void setAudio(byte[] audio) {
+        this.audio = audio;
+    }
+  
+  
 
 } // class CancionDTO

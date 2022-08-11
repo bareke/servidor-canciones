@@ -1,7 +1,7 @@
 package servidor.Repositorios;
 
 import java.util.ArrayList;
-import modelos.Cancion;
+import servidor.DTO.Cancion;
 
 /**
  *
@@ -9,7 +9,7 @@ import modelos.Cancion;
  */
 public interface CancionRepositoryInt {
 
-    public boolean registrarCancion(Cancion objCancion);
+    public boolean registrarCancion(Cancion cancion);
 
     public ArrayList<Cancion> listarCanciones();
 }

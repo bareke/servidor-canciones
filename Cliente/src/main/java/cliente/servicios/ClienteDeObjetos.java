@@ -1,8 +1,9 @@
 package cliente.servicios;
 
 import cliente.vista.Menu;
-import interfaces.ControladorGestorCancionInt;
-import utilidades.UtilidadesRegistroC;
+import servidor.interfaces.ControladorGestorCancionInt;
+
+import cliente.utilidades.UtilidadesRegistroC;
 
 /**
  *
@@ -16,12 +17,10 @@ public class ClienteDeObjetos {
 
         int numPuertoRMIRegistry = 2021;
         String direccionIpRMIRegistry = "localhost";
-        System.out.println("Cliente conectado en " + direccionIpRMIRegistry + " con puerto " + numPuertoRMIRegistry);
 
         objRemoto = (ControladorGestorCancionInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "objServicioGestionCanciones");
         Menu objMenu = new Menu(objRemoto);
         objMenu.ejecutarMenuPrincipal();
-
     }
 
 }

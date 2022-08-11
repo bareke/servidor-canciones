@@ -20,6 +20,7 @@ public class ControladorGestorCancionesImpl extends ControladorCancionIntPOA {
     @Override
     public boolean registrarCancion(CancionDTO objCancion) {
         boolean bandera = false;
+
         if (this.objCancionesRepository.registrarCancion(objCancion)) {
             bandera = true;
         }
@@ -28,9 +29,9 @@ public class ControladorGestorCancionesImpl extends ControladorCancionIntPOA {
 
     @Override
     public CancionDTO[] listarCanciones() {
-        CancionDTO[] vector = new CancionDTO[objCancionesRepository.listarCanciones().size()];
-        this.objCancionesRepository.listarCanciones().toArray(vector);
-        return vector;
+        CancionDTO[] canciones = new CancionDTO[objCancionesRepository.listarCanciones().size()];
+        this.objCancionesRepository.listarCanciones().toArray(canciones);
+        return canciones;
     }
 
 }

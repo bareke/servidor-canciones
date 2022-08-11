@@ -24,51 +24,49 @@ public class UsuarioRestController {
     @Autowired
     private IUsuarioService usuarioService;
 
-    @GetMapping("/usuario/{id}")
-    public Usuario show(@PathVariable String id) {
-        Usuario objUsuario = null;
-        objUsuario = usuarioService.findById(id);
-        return objUsuario;
-    }
-
-    @GetMapping("/usuarios/{correo}/{contrasena}")
-    public Usuario iniciarSesion(@PathVariable("correo") String correo, @PathVariable("contrasena") String contrasena) {
-        Usuario objUsuario = usuarioService.iniciarSesion(correo, contrasena);
-
-        if (objUsuario == null) {
-            System.out.println("Usuario o Contraseña invalidas...");
-            return objUsuario;
-        }
-        System.out.println("Bienvenido: " + objUsuario.getCorreo());
-        return objUsuario;
-    }
-
-    @GetMapping("/usuarios/{token}")
-    public boolean ValidarToken(@PathVariable("token") String token) {
-        if (usuarioService.existeToken(token)) {
-
-            System.out.println("Token valido");
-            return true;
-
-        } else {
-            System.out.println("Token invalido");
-            return false;
-        }
-    }
-
     @GetMapping("/usuarios")
     public List<Usuario> index() {
         return usuarioService.findAll();
     }
 
-    @PostMapping("/usuarios")
-    public Usuario registrar(@RequestBody Usuario nuevoUsuario) {
-        Usuario objUsuario = usuarioService.save(nuevoUsuario);
-        if (objUsuario == null) {
-            System.out.println("No se pudo registrar el usuario.");
-            return objUsuario;
+    @GetMapping("/usuarios/{email}/{pass}")
+    public Usuario iniciarSesion(@PathVariable("email") String email, @PathVariable("pass") String pass) {
+        Usuario objUsuario = usuarioService.login(email, pass);
+
+        if (objUsuario != null) {
+            System.out.println("Inicio sesion en el servidor " + objUsuario.getEmail());
+        } else {
+            System.out.println("Usuario o Contraseña invalidas...");
         }
-        System.out.println("Usuario registrado con éxito.");
+
+        return objUsuario;
+    }
+
+    @GetMapping("/usuarios/{token}")
+    public boolean verificarToken(@PathVariable("token") String token) {
+
+        if (usuarioService.checkToken(token)) {
+            System.out.println("El token es valido.");
+
+            return true;
+
+        } else {
+            System.out.println("Error, el token es invalido.");
+
+            return false;
+        }
+    }
+
+    @PostMapping("/usuarios")
+    public Usuario registrar(@RequestBody Usuario usuario) {
+        Usuario objUsuario = usuarioService.register(usuario);
+
+        if (objUsuario != null) {
+            System.out.println("Usuario registrado.");
+        } else {
+            System.out.println("Error, no se pudo registrar el usuario.");
+        }
+
         return objUsuario;
     }
 

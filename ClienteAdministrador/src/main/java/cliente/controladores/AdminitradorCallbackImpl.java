@@ -1,9 +1,9 @@
 package cliente.controladores;
 
-import interfaces.AdministradorCallbackInt;
+import servidor.interfaces.AdministradorCallbackInt;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import cliente.modelos.NotificacionDTO;
+import servidor.DTO.NotificacionDTO;
 
 /**
  *
@@ -16,7 +16,7 @@ public class AdminitradorCallbackImpl extends UnicastRemoteObject implements Adm
     }
 
     @Override
-    public void notificarCancion(NotificacionDTO objNotificacion) throws RemoteException {
+    public void imprimirCancion(NotificacionDTO objNotificacion) throws RemoteException {
         System.out.println(objNotificacion.toString());
     }
 

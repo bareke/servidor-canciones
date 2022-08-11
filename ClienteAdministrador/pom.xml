@@ -5,6 +5,7 @@
     <artifactId>ClienteAdministrador</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
+        
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

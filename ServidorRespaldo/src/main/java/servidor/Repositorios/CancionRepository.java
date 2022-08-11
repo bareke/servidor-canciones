@@ -28,11 +28,10 @@ public class CancionRepository implements CancionRepositoryInt {
     }
 
     private boolean almacenarArchivo(byte array[]) {
-        int cantidad = listaCanciones.size() + 1;
+        int varIncremento = listaCanciones.size() + 1;
         boolean bandera = true;
-
         try {
-            File objFile = new File("misCanciones/copia_Cancion" + cantidad + ".mp3");
+            File objFile = new File("misCanciones/copiaCancion_" + varIncremento + ".mp3");
             OutputStream output = new FileOutputStream(objFile);
             output.write(array);
         } catch (FileNotFoundException ex) {
@@ -45,19 +44,22 @@ public class CancionRepository implements CancionRepositoryInt {
     }
 
     @Override
-    public boolean registrarCancion(CancionDTO objCancion) {
+    public boolean registrarCancion(CancionDTO cancion) {
 
         boolean bandera;
-        objCancion.id = this.listaCanciones.size();
-        bandera = this.almacenarArchivo(objCancion.audio);
-        this.listaCanciones.add(objCancion);
+        cancion.id = (this.listaCanciones.size());
+        bandera = this.almacenarArchivo(cancion.getAudio());
+        this.listaCanciones.add(cancion);
 
-        System.out.println("Archivo creado en el servidor de Respaldo");
+        System.out.println();
+        System.out.println("Cancion registrada en el servidor");
+
+        System.out.println();
         System.out.println("Metadatos del archivo: ");
-        System.out.println("titulo: " + objCancion.titulo);
-        System.out.println("Artista: " + objCancion.artista);
-        System.out.println("Tipo: " + objCancion.tipo);
-        System.out.println("tamano en KB: " + objCancion.tamKB);
+        System.out.println("titulo: " + cancion.getTitulo());
+        System.out.println("Artista: " + cancion.getArtista());
+        System.out.println("tamano en KB: " + cancion.getTamKB());
+
         return bandera;
     }
 

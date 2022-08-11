@@ -47,7 +47,7 @@ public abstract class ControladorCancionIntPOA extends org.omg.PortableServer.Se
          sop_corba.ControladorCancionIntPackage.CancionDTO $result[] = null;
          $result = this.listarCanciones ();
          out = $rh.createReply();
-         sop_corba.ControladorCancionIntPackage.ListaCancionesHelper.write (out, $result);
+         sop_corba.ControladorCancionIntPackage.ListCancionesHelper.write (out, $result);
          break;
        }
 

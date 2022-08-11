@@ -12,15 +12,15 @@ public class ServidorDeObjetos {
 
     public static void main(String[] args) {
 
+        String[] vectorDatosLocalizarNS = new String[4];
+
+        vectorDatosLocalizarNS[0] = "-ORBInitialHost";
+        vectorDatosLocalizarNS[1] = "localhost";
+
+        vectorDatosLocalizarNS[2] = "-ORBInitialPort";
+        vectorDatosLocalizarNS[3] = "2020";
+
         try {
-            String[] vectorDatosLocalizarNS = new String[4];
-
-            vectorDatosLocalizarNS[0] = "-ORBInitialHost";
-            vectorDatosLocalizarNS[1] = "localhost";
-
-            vectorDatosLocalizarNS[2] = "-ORBInitialPort";
-            vectorDatosLocalizarNS[3] = "2020";
-
             CancionRepository objRepository = new CancionRepository();
             ControladorGestorCancionesImpl objRemotoGestionCanciones = new ControladorGestorCancionesImpl(objRepository);
 
@@ -29,7 +29,6 @@ public class ServidorDeObjetos {
             System.out.println("Error: " + e);
             e.printStackTrace(System.out);
         }
-
     }
 
 }

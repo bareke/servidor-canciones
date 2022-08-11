@@ -1,13 +1,13 @@
 package servidor.controladores;
 
-import interfaces.AdministradorCallbackInt;
-import interfaces.ControladorGestionAdministradoresInt;
+import servidor.interfaces.AdministradorCallbackInt;
+import servidor.interfaces.ControladorGestionAdministradoresInt;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
-import modelos.Cancion;
-import modelos.NotificacionDTO;
+import servidor.DTO.Cancion;
+import servidor.DTO.NotificacionDTO;
 
 /**
  *
@@ -27,10 +27,11 @@ public class ControladorGestionAdministradoresImpl extends UnicastRemoteObject i
         this.referenciasAdministradores.add(objReferencia);
     }
 
-    public void notificarAdministradores(Cancion objCancion, int nCanciones) throws RemoteException {
-        NotificacionDTO objNotificacion = new NotificacionDTO(objCancion, nCanciones);
+    public void notificarAdministradores(Cancion cancion, int numeroCanciones) throws RemoteException {
+        NotificacionDTO objNotificacion = new NotificacionDTO(cancion, numeroCanciones);
+
         for (AdministradorCallbackInt referencia : referenciasAdministradores) {
-            referencia.notificarCancion(objNotificacion);
+            referencia.imprimirCancion(objNotificacion);
         }
     }
 

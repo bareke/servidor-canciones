@@ -9,7 +9,7 @@ import sop_corba.ControladorCancionIntPackage.CancionDTO;
  */
 public interface CancionRepositoryInt {
 
-    public boolean registrarCancion(CancionDTO objCancion);
+    public boolean registrarCancion(CancionDTO cancion);
 
     public List<CancionDTO> listarCanciones();
 }

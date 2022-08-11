@@ -37,7 +37,7 @@ public class _ControladorCancionIntStub extends org.omg.CORBA.portable.ObjectImp
             try {
                 org.omg.CORBA.portable.OutputStream $out = _request ("listarCanciones", true);
                 $in = _invoke ($out);
-                sop_corba.ControladorCancionIntPackage.CancionDTO $result[] = sop_corba.ControladorCancionIntPackage.ListaCancionesHelper.read ($in);
+                sop_corba.ControladorCancionIntPackage.CancionDTO $result[] = sop_corba.ControladorCancionIntPackage.ListCancionesHelper.read ($in);
                 return $result;
             } catch (org.omg.CORBA.portable.ApplicationException $ex) {
                 $in = $ex.getInputStream ();
