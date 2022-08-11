@@ -1,0 +1,15 @@
+module sop_corba{
+    interface ControladorCancionInt{
+	    typedef sequence<octet> flujoBytes;
+		struct CancionDTO{
+			long id;
+			string artista;	
+			string titulo;
+			long tamKB;	
+		    flujoBytes audio;
+		};
+		typedef sequence<CancionDTO> ListCanciones;
+		boolean registrarCancion(in CancionDTO objCancion);
+		ListCanciones listarCanciones();		
+    };    	 
+};

@@ -1,5 +1,6 @@
 package utilidades;
 
+import cliente.modelos.CancionDTO;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +11,7 @@ import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
-import servidor.DTO.CancionDTOO;
+
 
 /**
  *
@@ -18,8 +19,8 @@ import servidor.DTO.CancionDTOO;
  */
 public class UtilidadesAudio {
 
-    public static CancionDTOO leerMetadatos(String nombreCancion) {
-        CancionDTOO objCancion = null;
+    public static CancionDTO leerMetadatos(String nombreCancion) {
+        CancionDTO objCancion = null;
         try {
             PrintStream obj;
             obj = new PrintStream(new File("archivoSalida.txt"));
@@ -32,7 +33,8 @@ public class UtilidadesAudio {
             String titulo = tag.getFirst(FieldKey.TITLE);
             String nameFile = file.getName();
             String tipo = identificarExtencion(nameFile);
-            objCancion = new CancionDTOO(tipo, artista, titulo, tamMB);
+            objCancion = new CancionDTO(tipo, artista, titulo, tamMB);
+            
 
         } catch (Exception ex) {
             System.out.println("Error al leer los métadatos del archivo" + ex);

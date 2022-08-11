@@ -1,4 +1,4 @@
-package servidor.DTO;
+package cliente.modelos;
 
 import java.io.Serializable;
 import java.time.LocalDate;

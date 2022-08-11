@@ -4,13 +4,7 @@
     <groupId>com.unicauca.servidorcanciones</groupId>
     <artifactId>ServidorCanciones</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <dependencies>
-        <dependency>
-            <groupId>com.unicauca.commons</groupId>
-            <artifactId>Commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        
+    <dependencies>        
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>

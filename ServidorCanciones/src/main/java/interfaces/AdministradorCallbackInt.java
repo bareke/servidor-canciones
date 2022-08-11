@@ -2,7 +2,7 @@ package interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import servidor.DTO.NotificacionDTO;
+import modelos.NotificacionDTO;
 
 /**
  *

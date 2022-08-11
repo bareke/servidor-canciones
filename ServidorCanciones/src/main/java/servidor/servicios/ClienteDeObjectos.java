@@ -1,8 +1,6 @@
 package servidor.servicios;
 
-import servidor.DTO.CancionDTOO;
 import sop_corba.ControladorCancionIntOperations;
-import sop_corba.ControladorCancionIntPackage.CancionDTO;
 import utilidades.UtilidadesNSC;
 
 /**

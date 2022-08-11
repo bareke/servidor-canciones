@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
-import servidor.DTO.NotificacionDTO;
+import modelos.NotificacionDTO;
 import sop_corba.ControladorCancionIntPackage.CancionDTO;
 
 /**

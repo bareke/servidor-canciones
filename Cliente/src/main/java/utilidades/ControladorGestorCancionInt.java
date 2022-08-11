@@ -1,9 +1,9 @@
-package interfaces;
+package utilidades;
 
+import cliente.modelos.CancionDTO;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import servidor.DTO.CancionDTOO;
 
 /**
  *

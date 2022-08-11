@@ -1,5 +1,6 @@
 package cliente.vista;
 
+import cliente.modelos.CancionDTO;
 import interfaces.ControladorGestorCancionInt;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Usuario;
 import servicios.UsuarioServices;
-import servidor.DTO.CancionDTOO;
 import utilidades.UtilidadesAudio;
 import utilidades.UtilidadesConsola;
 import utilidades.UtilidadesValidaciones;
@@ -114,7 +114,7 @@ public class Menu {
         String nombreCancion = UtilidadesConsola.leerCadena();
 
         if (UtilidadesValidaciones.existe(nombreCancion)) {
-            CancionDTOO objCancion = UtilidadesAudio.leerMetadatos(nombreCancion);
+            CancionDTO objCancion = UtilidadesAudio.leerMetadatos(nombreCancion);
 
             if (objCancion != null) {
                 byte[] arrayBytesCancion = UtilidadesAudio.obtenerBytesCancion(nombreCancion);

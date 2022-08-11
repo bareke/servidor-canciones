@@ -3,7 +3,7 @@ package cliente.servicios;
 import cliente.controladores.AdminitradorCallbackImpl;
 import interfaces.ControladorGestionAdministradoresInt;
 import java.rmi.RemoteException;
-import utilidades.UtilidadesRegistroC;
+import cliente.utilidades.UtilidadesRegistroC;
 
 /**
  *
